@@ -9,7 +9,7 @@ ccdDoAdd() {
 	cd "$easyRSADir"
 	source "$easyRSAVars"
 	./build-key "$1"
-	eval "$(echo "echo \"$(cat "$ovpnClientConfigTemplate")\"")" > "$userConfigDirectory/$1.ovpn"
+	eval "echo \"$(cat "$ovpnClientConfigTemplate")\"" > "$userConfigDirectory/$1.ovpn"
 	chownmod "$easyUser:$easyGroup" 400 "$userConfigDirectory/$1.ovpn"
 	echo "ifconfig-push $vpnSubnetCutoff.$2 $vpnServerInternalIp" > "$clientConfigDirectory/$1"
 	chownmod "$easyUser:$easyGroup" 444 "$clientConfigDirectory/$1" # Must be readable by user 'nobody'

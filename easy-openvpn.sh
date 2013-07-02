@@ -70,17 +70,17 @@ shouldPromisc="$(getConf shouldPromisc | tr '[:upper:]' '[:lower:]')"
 
 # Make files
 # ---- Main config file
-eval "$(echo "echo \"$(cat "$ovpnServerConfigTemplate")\"")" > "$ovpnConfigFile"
+eval "echo \"$(cat "$ovpnServerConfigTemplate")\"" > "$ovpnConfigFile"
 chownmod "$easyUser:$easyGroup" 400 "$ovpnConfigFile"
 
 # ---- systemd service
-eval "$(echo "echo \"$(cat "$fallbackScriptTemplate")\"")" > "$fallbackScript"
+eval "echo \"$(cat "$fallbackScriptTemplate")\"" > "$fallbackScript"
 chownmod "$easyUser:$easyGroup" 755 "$fallbackScript"
-eval "$(echo "echo \"$(cat "$systemdServicePreScriptTemplate")\"")" > "$systemdServicePreScript"
+eval "echo \"$(cat "$systemdServicePreScriptTemplate")\"" > "$systemdServicePreScript"
 chownmod "$easyUser:$easyGroup" 755 "$systemdServicePreScript"
-eval "$(echo "echo \"$(cat "$systemdServicePostScriptTemplate")\"")" > "$systemdServicePostScript"
+eval "echo \"$(cat "$systemdServicePostScriptTemplate")\"" > "$systemdServicePostScript"
 chownmod "$easyUser:$easyGroup" 755 "$systemdServicePostScript"
-eval "$(echo "echo \"$(cat "$systemdServiceTemplate")\"")" > "$systemdService"
+eval "echo \"$(cat "$systemdServiceTemplate")\"" > "$systemdService"
 chownmod --reference="$systemdServiceRoot" 644 "$systemdService"
 
 # ---- Client config files
