@@ -1,0 +1,12 @@
+[Unit]
+Description=easy-openvpn server
+After=network.target
+
+[Service]
+Type=forking
+ExecStartPre=$(which bash) $systemdServicePreScript
+ExecStart=$(which openvpn) --cd $easyRoot --config $ovpnConfigFile --daemon $daemonName
+ExecStopPost=$(which bash) $systemdServicePostScript
+
+[Install]
+WantedBy=multi-user.target
