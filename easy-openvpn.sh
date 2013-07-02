@@ -81,8 +81,7 @@ chownmod "$easyUser:$easyGroup" 755 "$systemdServicePreScript"
 eval "$(echo "echo \"$(cat "$systemdServicePostScriptTemplate")\"")" > "$systemdServicePostScript"
 chownmod "$easyUser:$easyGroup" 755 "$systemdServicePostScript"
 eval "$(echo "echo \"$(cat "$systemdServiceTemplate")\"")" > "$systemdService"
-chown --reference="$systemdServiceRoot" "$systemdService"
-chmod 644 "$systemdService"
+chownmod --reference="$systemdServiceRoot" 644 "$systemdService"
 
 # ---- Client config files
 mkdir -p "$clientConfigDirectory" "$userConfigDirectory" "$clientIPsDirectory"
