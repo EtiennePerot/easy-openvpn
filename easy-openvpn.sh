@@ -102,6 +102,8 @@ while true; do
 		ccdRemove
 	elif [ "$choice" == 5 ]; then
 		systemctl stop "$daemonName" &>/dev/null || true
+		userdel -f "$easyUser" || true
+		groupdel "$easyGroup" &>/dev/null || true
 		rm -rf "$easyRoot" "$systemdService"
 		info 'easy-openvpn uninstalled.'
 		exit 0
