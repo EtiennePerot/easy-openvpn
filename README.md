@@ -20,7 +20,7 @@ And then follow the on-screen instructions. You can re-run the script anytime if
 
 ## Results
 
-You will end up with:
+#### You will end up with:
 
 * A VPN server accepting multiple clients
 * A `tun` interface
@@ -35,12 +35,15 @@ You will end up with:
 * LZO compression enabled
 * A systemd service called `easy-openvpn.service` to start/stop/monitor it
 
-Decisions that are left up to you:
+#### Decisions that are left up to you:
 
-* Port number on the server
-* UDP or TCP
-* DNS server to suggest to clients over DHCP
-* The actual `10.10.10.x` IP assigned to each client
+This is the only stuff you have to figure out on your own, although there are sensible and/or autodetected default values for everything:
+
+* The network interface that clients will access the Internet through
+* The port number that the OpenVPN server should use
+* Whether to use UDP or TCP
+* The IP of the DNS server to suggest to clients
+* The name and the `10.10.10.x` IP that you want to assign to each client
 
 ## Client management
 
