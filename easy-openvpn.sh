@@ -35,8 +35,14 @@ chown -R "$easyUser:$easyGroup" "$easyRoot"
 chmod 711 "$easyRoot"
 cd "$easyRoot"
 mkdir -p "$easyRSADir"
-if [ ! -d "$easyRSABase" ]; then
-	error "Cannot find Easy-RSA scripts at '$easyRSABase'. Make sure OpenVPN is installed."
+easyRSABase=''
+for d in "${easyRSABases[@]}"; do
+	if [ -d "$d" ]; then
+		easyRSABase="$d"
+	fi
+done
+if [ -z "$easyRSABase" ]; then
+	error "Cannot find Easy-RSA scripts in any of ${easyRSABases[@]}. Make sure OpenVPN and the Easy-RSA scripts are installed."
 fi
 if [ ! -f "$easyRSADoneFile" ]; then
 	info 'Setting up PKI infrastructure.'
